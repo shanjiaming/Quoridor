@@ -9,9 +9,28 @@
 
 using std::string;
 
+enum chess_circumstance { none , circle , cross };  // 3 kinds of circumstances for each block
+enum barrier { vacuum , straight , vertical };   //  3 kinds of circumstances for each border
 
 class ChessEngine {
 public:
+
+    chess_circumstance chessboard[9][9] ; // 0-base
+    barrier chess_boarder[8][8] ; // 0-base
+
+    chess_circumstance turn ; // to find out whose turn  initialization : circle
+
+    int circle_border ;  // initialization : 8
+    int cross_border ;  // initialization : 8
+
+    int all_step ;  // initialization : 0
+
+    ChessEngine() ;
+
+    ~ChessEngine() ;
+
+
+
 
     /*
      * string ShowState() const;
@@ -22,10 +41,21 @@ public:
 
     /*
      * void InputMove(string);
-     * A function that read a given string(probalbly by user or AI)
+     * A function that read a given string(probably by user or AI)
      * as an input and change the state of the board accordingly.
      */
     void InputMove(string);
+
+    /*
+     * first input : move or put
+     *      move means to move your chess
+     *      put means to set one border
+     * second input :
+     *      horizontal & vertical coordinates & position for put
+     *      forward | backward | left | right for move
+     *      move forward
+     *      put 3 4 straight
+     */
 
 };
 
