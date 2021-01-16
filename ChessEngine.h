@@ -11,14 +11,15 @@ using std::string;
 
 enum chess_circumstance { none , circle , cross };  // 3 kinds of circumstances for each block
 enum barrier { vacuum , straight , vertical };   //  3 kinds of circumstances for each border
+const int SIZE = 9;
 
 class ChessEngine {
-public:
+private:
 
-    chess_circumstance chessboard[9][9] ; // 0-base
-    barrier chess_boarder[8][8] ; // 0-base
+    chess_circumstance chessboard[SIZE][SIZE] ; // 0-base
+    barrier chess_boarder[SIZE-1][SIZE-1] ; // 0-base
 
-    chess_circumstance turn ; // to find out whose turn  initialization : circle
+//    chess_circumstance turn ; // to find out whose turn  initialization : circle
 
     int circle_border ;  // initialization : 8
     int cross_border ;  // initialization : 8
@@ -31,7 +32,7 @@ public:
 
 
 
-
+public:
     /*
      * string ShowState() const;
      * A function changing present state to string

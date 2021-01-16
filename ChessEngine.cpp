@@ -22,4 +22,3 @@ ChessEngine::ChessEngine() : turn(circle) , circle_border(8) , cross_border(8) ,
         for ( int j = 0 ; j < 8 ; j++ )
             chess_boarder[i][j] = vacuum ;
 }
-
