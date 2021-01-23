@@ -12,7 +12,8 @@ void ChessEngine::InputMove(string str)
 
 }
 
-ChessEngine::ChessEngine() : turn(circle) , circle_border(8) , cross_border(8) , all_step(0)
+
+ChessEngine::ChessEngine(string initial_str) : turn(circle) , circle_border(8) , cross_border(8) , all_step(0)
 {
     for ( int i = 0 ; i < 9 ; i++ )
         for ( int j = 0 ; j < 9 ; j++ )
@@ -20,5 +21,7 @@ ChessEngine::ChessEngine() : turn(circle) , circle_border(8) , cross_border(8) ,
 
     for ( int i = 0 ; i < 8 ; i++ )
         for ( int j = 0 ; j < 8 ; j++ )
-            chess_boarder[i][j] = vacuum ;
+            chessBoarders[i][j] = vacuum ;
 }
+
+ChessEngine::Player::Player(int _barrierNum, int _x, int _y) : barrierNum(_barrierNum), x(_x), y(_y) {}

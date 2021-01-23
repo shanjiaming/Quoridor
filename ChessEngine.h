@@ -9,53 +9,53 @@
 
 using std::string;
 
-enum chess_circumstance { none , circle , cross };  // 3 kinds of circumstances for each block
-enum barrier { vacuum , straight , vertical };   //  3 kinds of circumstances for each border
+//enum ChessCircumstance { none , circle , cross };  // 3 kinds of circumstances for each block
+typedef int ChessCircumstance;
+//enum Barrier { vacuum , straight , vertical };   //  3 kinds of circumstances for each border
+typedef int Barrier;
 const int SIZE = 9;
+const int PLAYER_NUM = 2;
 
-class ChessEngine {
-private:
-
-    chess_circumstance chessboard[SIZE][SIZE] ; // 0-base
-    barrier chess_boarder[SIZE-1][SIZE-1] ; // 0-base
-
-//    chess_circumstance turn ; // to find out whose turn  initialization : circle
-
-    int circle_border ;  // initialization : 8
-    int cross_border ;  // initialization : 8
-
-    int all_step ;  // initialization : 0
-
-    ChessEngine() ;
-
-    ~ChessEngine() ;
-
-
+struct ChessEngine {
 
 public:
-    /*
-     * string ShowState() const;
-     * A function changing present state to string
-     * to show its information
-     */
-    string ShowState() const;
+
+//    ChessCircumstance chessboard[SIZE][SIZE] ; // 0-base
+    Barrier chessBoarders[SIZE - 1][SIZE - 1] ; // 0-base
+    ChessCircumstance turn ; // to find out whose turn  initialization : circle
+
+
+    ChessEngine(string="");
+
+    ~ChessEngine() ;
 
     /*
      * void InputMove(string);
      * A function that read a given string(probably by user or AI)
      * as an input and change the state of the board accordingly.
      */
+    struct Player{
+        int barrierNum;
+        int x;
+        int y;
+        bool (*hasWin)(Player);//While using, this "Player" should be itself. This function differs from player to player. Though I haven't got ideas to improve it.
+    };
+    Player players[PLAYER_NUM];//eg:player[0] player[1]
+
+    void GameInitialize(string);
+
     void InputMove(string);
 
     /*
      * first input : move or put
-     *      move means to move your chess
+     *      mov means to move your chess
      *      put means to set one border
+     *      oth include other circumstances
      * second input :
-     *      horizontal & vertical coordinates & position for put
-     *      forward | backward | left | right for move
-     *      move forward
-     *      put 3 4 straight
+     *      - & | , coordinates & position for put
+     *      A | D | W | X | something like Q|E|Z|C|S for move
+     *      mov A
+     *      put 3 4 -
      */
 
 };
